@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <link rel="icon" type="image/x-icon" href="css/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>SNM Translator</title>
+</head>
+
+<body>
+
+  <img src="snm.png" class="main-logo">
+
+  <textarea class="input" type="text" id="text-box" autofocus></textarea>
+  <div class="buttons"></div>
+    <input class="enter" type="button" id="btn" value="ENTER">
+    <!-- <input class="save" type="button" id="savebtn" value="SAVE"> -->
+    <i class="fa fa-question-circle"></i>
+  </div>
+
+  <p class="output" id="output-1"></p>
+
+  <ul class="savearea"></ul>
+
+  <div class="shabads">
+    <p class="shabads-title">Shabads</p>
+    <ul class="list">
+      <a href="Nirankar Dhuni.txt" target="_blank"><li class="list-item">Nirankar Dhuni</a></li>
+      <a href="Manglacharan.txt" target="_blank"><li class="list-item">Manglacharan</a></li>
+    </ul>
+  </div>
+
+  <p class="copyright">Developed By Kurrun Behl © Centre of Oneness Birmingham UK</p>
+
+  <script>
+
+    const text1 = document.getElementById('text-box');
+    const btn1 = document.getElementById('btn');
+    const btn2 = document.getElementById('savebtn');
+    const output1 = document.getElementById('output-1');
+    const save1 = document.getElementById('savearea');
+
+    function outputInput() {
+      dataSet.push(text1.value);
+      output1.innerHTML = text1.value;
+      text1.value = "";
+      text1.focus();
+      addData();
+    }
+
+    // function saveInput() {
+    //   save1.innerHTML = text1.value;
+    //   text1.value = "";
+    //   text1.focus();
+    // }
+
+    btn1.addEventListener("click", outputInput);
+    // btn2.addEventListener("click", saveInput);
+
+    function copyText() {
+      text1.value = save1.innerHTML;
+      text1.focus();
+    }
+
+    let dataSet = [];
+
+    function addData() {
+      let template = dataSet.map(data => `<li>${data}</li>`).join('\n');
+      document.querySelector('ul').innerHTML = template;  
+    }
+
+    addData();
+
+    // btn1.addEventListener('click', () => {
+    //   dataSet.push(text1.value);
+    //   text1.value = "";
+    //   text1.focus();
+    //   addData();
+    // });
+
+
+    text1.addEventListener("keypress", function (event) {
+      if (event.keyCode == 13) {
+        btn1.click();
+        text1.value = "";
+        event.preventDefault();
+      }
+
+      // if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
+      //   btn2.click();
+      //   text1.value = "";
+      //   event.preventDefault();
+      // }
+    });
+
+  </script>
+</body>
+
+</html>
